@@ -1,0 +1,11 @@
+{
+  "ctfs":[
+    {
+      "name": "FAUST CTF 2018",
+      "link": "https://ctftime.org/event/554",
+      "type": "Attack/defence",
+      "start": 1527858000,
+      "duration": 9
+    }
+  ]
+}

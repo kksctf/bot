@@ -1,0 +1,13 @@
+{
+    "request_timeout": 3,
+    "calendar_file": "ctf.json",
+    "token_file": "token.txt",
+    "chats": {
+        "kks_wund3rw4ffl3_team": "-1001073714792",
+        "kksctf": "-1001190162920"
+    },
+    "ctftime_team_chat_ids": {
+        "-1001073714792": ["32621"],
+        "-1001190162920": ["32621", "51614", "51601", "53653", "53776"]
+    }
+}
