@@ -20,7 +20,8 @@ class TelegramBot:
         r = requests.get(f"{self.url}getUpdates?offset={self.update_id}", timeout=self.CONNECTION_LOST_TIMEOUT).json()
         if r['ok'] and 'result' in r.keys():
             for i in r['result']:
-                out.append(i['message'])
+                if 'text' in i['message'].keys():
+                    out.append(i['message'])
                 if i['update_id'] >= self.update_id:
                     self.update_id = i['update_id']+1
         return out
