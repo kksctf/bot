@@ -46,8 +46,14 @@ def print_info_from_message(message):
 
 
 def check_command(bot, available_dict, message):
+    text = message['text']
+    at_location = text.find("@")
+    if at_location != -1:
+        text = text[0:at_location]
+    print(text)
+
     for ac, af in available_dict.items():
-        if ac in message['text'].split('@'):
+        if ac in text:
             bot.send_message(message['chat']['id'], af())
             return True
 
