@@ -1,23 +1,32 @@
 import requests
+import time
 
 class TelegramBot:
     CONNECTION_LOST_TIMEOUT = 60
 
-    def __init__(self, token):
+    def __init__(self, token, proxies=None):
         self.token = token
         self.url = f"https://api.telegram.org/bot{self.token}/"
-        self._check_token()
         self.update_id = 0
+        self.proxies = proxies
+        self._check_token()
 
     def _check_token(self):
-        if requests.get(self.url + "getMe").json()['ok'] == True:
+        r = requests.get(self.url + "getMe", proxies=self.proxies)
+
+        if r.json()['ok'] == True:
             return True
         else:
             raise ValueError("Invalid token!")
 
     def get_messages(self):
         out = []
-        r = requests.get(f"{self.url}getUpdates?offset={self.update_id}", timeout=self.CONNECTION_LOST_TIMEOUT).json()
+        try:
+            r = requests.get(f"{self.url}getUpdates?offset={self.update_id}", timeout=self.CONNECTION_LOST_TIMEOUT, proxies=self.proxies).json()
+        except requests.exceptions.RequestException as e:
+            print(f"{int(time.time())} | Error while getting messages:", e)
+            return out
+
         if r['ok'] and 'result' in r.keys():
             for i in r['result']:
                 if 'text' in i['message'].keys():
@@ -27,10 +36,13 @@ class TelegramBot:
         return out
 
     def send_message(self, chat_id, text, parse_mode=''):
-        r = requests.post(f"{self.url}sendMessage", 
-                          data={'chat_id': chat_id, 'text': text, 'parse_mode': parse_mode},
-                          timeout=self.CONNECTION_LOST_TIMEOUT)
-        return r
+        try:
+            r = requests.post(f"{self.url}sendMessage", 
+                              data={'chat_id': chat_id, 'text': text, 'parse_mode': parse_mode},
+                              timeout=self.CONNECTION_LOST_TIMEOUT,
+                              proxies=self.proxies)
+        except requests.exceptions.RequestException as e:
+            print(f"{int(time.time())} | Error while sending message:", e)
+            return None
 
-    def getme_telegram_api(self):
-        return requests.get(self.url + "getMe").text
+        return r

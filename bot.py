@@ -50,7 +50,6 @@ def check_command(bot, available_dict, message):
     at_location = text.find("@")
     if at_location != -1:
         text = text[0:at_location]
-    print(text)
 
     for ac, af in available_dict.items():
         if ac in text:
@@ -78,7 +77,7 @@ if __name__ == '__main__':
 
     print_commands(listed_commands_imported, listed_commands_avail, "Listed commands:")
     print_commands(unlisted_commands_imported, unlisted_commands_avail, "Unlisted commands:")
-    
+
     settings = util.load_settings()
 
     bot_token = ""
@@ -90,7 +89,13 @@ if __name__ == '__main__':
         exit(1)
     except:
         exit(2)
+    
+    try:
+        proxies = settings['proxies']
+    except KeyError as e:
+        proxies = None
+        print("Proxy server isn't set!")
 
-    bot = telegram_bot.TelegramBot(bot_token)
+    bot = telegram_bot.TelegramBot(bot_token, proxies)
 
     main(bot, settings)
