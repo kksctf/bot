@@ -26,6 +26,9 @@ class TelegramBot:
         except requests.exceptions.RequestException as e:
             print(f"{int(time.time())} | Error while getting messages:", e)
             return out
+        except json.decoder.JSONDecodeError as e:
+            print(f"{int(time.time())} | Error while getting messages:", e)
+            return out
 
         if r['ok'] and 'result' in r.keys():
             for i in r['result']:

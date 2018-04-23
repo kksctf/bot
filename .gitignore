@@ -1,3 +1,5 @@
 logs/*
 .idea/*
 __pycache__/*
+token.txt
+unlisted_commands.py
