@@ -1,5 +1,6 @@
 import requests
 import time
+import json
 
 class TelegramBot:
     CONNECTION_LOST_TIMEOUT = 60
@@ -32,7 +33,7 @@ class TelegramBot:
 
         if r['ok'] and 'result' in r.keys():
             for i in r['result']:
-                if 'text' in i['message'].keys():
+                if 'message' in i.keys() and 'text' in i['message'].keys():
                     out.append(i['message'])
                 if i['update_id'] >= self.update_id:
                     self.update_id = i['update_id']+1
