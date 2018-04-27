@@ -1,4 +1,3 @@
-from sys import argv
 from datetime import datetime
 
 
@@ -40,4 +39,3 @@ def parse_ctf_from_ics(s):
 
 if __name__ == '__main__':
     parse_ctf_from_ics(s)
-    
