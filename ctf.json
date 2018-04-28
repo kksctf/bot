@@ -1,11 +1,31 @@
 {
-  "ctfs":[
+  "ctfs": [
     {
+      "id": "617",
+      "name": "PlaidCTF 2018",
+      "link": "http://plaidctf.com/",
+      "ctftime_link": "https://ctftime.org/event/617",
+      "type": "Jeopardy",
+      "start": 1525453200,
+      "duration": 36
+    },
+    {
+      "id": "554",
       "name": "FAUST CTF 2018",
-      "link": "https://ctftime.org/event/554",
-      "type": "Attack/defence",
-      "start": 1527858000,
+      "link": "https://www.faustctf.net/",
+      "ctftime_link": "https://ctftime.org/event/554",
+      "type": "Attack/Defense",
+      "start": 1527847200,
       "duration": 9
+    },
+    {
+      "id": "568",
+      "name": "ASIS CTF Quals 2018",
+      "link": "https://asisctf.com/",
+      "ctftime_link": "https://ctftime.org/event/568",
+      "type": "Jeopardy",
+      "start": 1524927600,
+      "duration": 48
     }
   ]
 }
