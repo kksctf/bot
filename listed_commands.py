@@ -134,10 +134,14 @@ def get_string_help():
 /week - Текущая учебная неделя 📅
 ---
 Мои исходники: https://github.com/kksctf/bot ;)
+---
+kksctf-summer-school-7e2
+/cookie4 - cookie4, очевидно
 """
 
 
 available = {
+    "/cookie4": lambda: open("cookie4.txt").read(),
     "/help": get_string_help,
     "/week": get_string_week_number,
     "/current": get_string_current_info,
