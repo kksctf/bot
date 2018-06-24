@@ -53,7 +53,7 @@ def check_command(bot, available_dict, message):
 
     for ac, af in available_dict.items():
         if ac in text:
-            bot.send_message(message['chat']['id'], af())
+            bot.send_message(message['chat']['id'], af(text=text))
             return True
 
 

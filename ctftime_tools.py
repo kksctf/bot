@@ -29,3 +29,20 @@ def get_ctf_ics(ctf_id):
         return ""
     else:
         return r.text
+
+
+def get_tuple_ctftime_rating(team_id):
+    link = "https://ctftime.org/team/{}".format(team_id)
+    r = requests.get(link, headers=random_headers())
+    if r.status_code != 200:
+        return 99999, f"{link}: {r.status_code}", 0, team_id
+
+    soup = BeautifulSoup(r.text, 'html.parser')
+
+    name = str(soup.title.text).split('/')[1].strip()
+
+    res = soup.find(id="rating_2018")
+    overall, place, points = str(res.p.text).split('\n')
+    place_int = int(place.strip())
+    points = points.strip().split(' ')[1]
+    return place_int, name, points, team_id

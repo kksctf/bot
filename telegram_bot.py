@@ -13,7 +13,10 @@ class TelegramBot:
         self._check_token()
 
     def _check_token(self):
-        r = requests.get(self.url + "getMe", proxies=self.proxies)
+        try:
+            r = requests.get(self.url + "getMe", proxies=self.proxies)
+        except:
+            raise ValueError("Can't connect")
 
         if r.json()['ok'] == True:
             return True
