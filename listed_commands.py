@@ -274,7 +274,7 @@ def get_string_shrug(**kwargs):
     return "¯\\_(ツ)_/¯"
 
 
-def get_string_help():
+def get_string_help(**kwargs):
     return """
 💎 kksCTF bot v2.3.0g 💎
 /help - Показать это меню
